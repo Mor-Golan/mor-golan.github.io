@@ -89,6 +89,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 17px/1.7 var(--font-sans);
+  /* JetBrains Mono would draw ->, <= and -- as arrows and dashes, which misquotes code */
+  font-variant-ligatures: none;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -404,11 +406,12 @@ h1 { margin: 0; color: var(--text-strong); font-family: var(--font-mono); font-w
 .terminal-facts dd { margin: 0; color: var(--text); }
 .terminal-facts .is-accent { color: var(--accent); }
 
-/* Joined panels: 1px gaps show the line color between cells */
+/* Joined panels: 1px gaps show the line color between cells.
+   Wrapping panels use flex so a short last row stretches instead of leaving an empty cell. */
 
 .stat-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   margin: 0;
   overflow: hidden;
@@ -419,6 +422,7 @@ h1 { margin: 0; color: var(--text-strong); font-family: var(--font-mono); font-w
 
 .stat {
   display: flex;
+  flex: 1 1 240px;
   flex-direction: column;
   gap: 12px;
   padding: 24px 28px;
@@ -448,8 +452,8 @@ h1 { margin: 0; color: var(--text-strong); font-family: var(--font-mono); font-w
 
 .stat-unit { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
 
-.stat-strip-sm { grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); border: 0; border-radius: 0; border-bottom: 1px solid var(--line); }
-.stat-strip-sm .stat { gap: 10px; padding: 20px 24px; }
+.stat-strip-sm { border: 0; border-radius: 0; border-bottom: 1px solid var(--line); }
+.stat-strip-sm .stat { flex-basis: 150px; gap: 10px; padding: 20px 24px; }
 .stat-strip-sm dd { color: var(--text-strong); font-size: 32px; letter-spacing: 0; }
 
 /* Severity colors */
@@ -998,8 +1002,8 @@ h1 { margin: 0; color: var(--text-strong); font-family: var(--font-mono); font-w
 /* The summary table at the top of a writeup renders as a grid of cells */
 
 .prose table.facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   margin: 0 0 8px;
   overflow: hidden;
@@ -1012,7 +1016,7 @@ h1 { margin: 0; color: var(--text-strong); font-family: var(--font-mono); font-w
 
 .facts thead { display: none; }
 .facts tbody { display: contents; }
-.facts tr { display: flex; flex-direction: column; gap: 6px; padding: 14px 18px; background: var(--bg-raised); }
+.facts tr { display: flex; flex: 1 1 190px; flex-direction: column; gap: 6px; padding: 14px 18px; background: var(--bg-raised); }
 .facts td { padding: 0; border: 0; }
 .facts td:first-child { color: var(--text-muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
 .facts td + td { color: var(--text); font-size: 13px; overflow-wrap: anywhere; }
