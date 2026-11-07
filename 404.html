@@ -4,8 +4,14 @@ title: Page not found
 permalink: /404.html
 sitemap: false
 ---
-<h1>Page not found</h1>
-<p class="lede">
-  That page doesn't exist. Go to the <a href="{{ '/' | relative_url }}">homepage</a>
-  or browse the <a href="{{ '/cves/' | relative_url }}">CVEs</a>.
-</p>
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="prompt">$ cat page &middot; error 404</p>
+    <h1 class="h1-page">Page not found</h1>
+    <p class="lede">
+      That page doesn't exist. Go to the <a href="{{ '/' | relative_url }}">homepage</a>
+      or browse the <a href="{{ '/cves/' | relative_url }}">CVEs</a>.
+    </p>
+  </div>
+</section>

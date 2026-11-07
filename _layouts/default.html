@@ -28,39 +28,57 @@
   {%- if site.google_site_verification and site.google_site_verification != "" %}
   <meta name="google-site-verification" content="{{ site.google_site_verification }}">
   {%- endif %}
+  <meta name="theme-color" content="#0a0d0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   {% include person-jsonld.html %}
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  {%- if page.url == "/" %}
+  {%- assign here = "home" %}
+  {%- else %}
+  {%- assign url_parts = page.url | split: "/" %}
+  {%- assign here = url_parts[1] | remove: ".html" %}
+  {%- endif %}
   <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="{{ '/' | relative_url }}">{{ site.name }}</a>
-      <nav aria-label="Main">
+    <div class="container header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <span class="mark" aria-hidden="true">&gt;_</span>
+        <span class="brand-name">{{ site.name | downcase }}</span>
+        <span class="brand-path">~/{{ here }}</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
         {%- for item in site.nav %}
         {%- assign current = false %}
         {%- if page.url == item.url %}{% assign current = true %}
         {%- elsif item.url != "/" and page.url contains item.url %}{% assign current = true %}
         {%- endif %}
-        <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}><span class="nav-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{{ item.title | downcase }}</a>
         {%- endfor %}
       </nav>
     </div>
   </header>
 
-  <main id="main" class="wrap">
+  <main id="main">
     {{ content }}
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <p>&copy; {{ site.time | date: "%Y" }} {{ site.name }}</p>
-      <p class="footer-links">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="mark mark-sm" aria-hidden="true">&gt;_</span>
+        <span>&copy; {{ site.time | date: "%Y" }} {{ site.name }}</span>
+      </div>
+      <nav class="footer-links" aria-label="Profiles">
         {%- assign visible_profiles = site.data.profiles | where_exp: "p", "p.hidden != true" %}
         {%- for p in visible_profiles %}
-        <a href="{{ p.url }}" rel="me">{{ p.name }}</a>{% unless forloop.last %} &middot;{% endunless %}
+        <a href="{{ p.url }}" rel="me">{{ p.name | downcase | remove: " " }}</a>
         {%- endfor %}
-      </p>
+      </nav>
     </div>
   </footer>
 </body>

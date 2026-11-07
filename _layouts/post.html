@@ -1,14 +1,131 @@
 ---
 layout: default
 ---
+{%- assign pc = nil %}
+{%- assign short_title = page.title %}
+{%- if page.cve %}
+{%- assign pc = site.data.cves | where: "id", page.cve | first %}
+{%- assign pc_prefix = page.cve | append: ": " %}
+{%- assign short_title = page.title | remove_first: pc_prefix %}
+{%- endif %}
+{%- assign url_parts = page.url | split: "/" %}
+{%- assign slug = url_parts | last %}
+
+{%- comment %}
+Shape the rendered markdown for the design without changing the posts:
+the summary table becomes a grid of cells, the severity and fixed version get their colors,
+a one sentence Fix paragraph becomes a pill, and timeline dates get their own column.
+{% endcomment %}
+{%- assign body = content | replace_first: "<table>", '<table class="facts">' %}
+{%- if pc %}
+{%- capture sev_old %}<td>CVSS {{ pc.cvss }} {{ pc.severity }}</td>{% endcapture %}
+{%- capture sev_new %}<td class="sev-text sev-{{ pc.severity | downcase }}">CVSS {{ pc.cvss }} {{ pc.severity }}</td>{% endcapture %}
+{%- assign body = body | replace_first: sev_old, sev_new %}
+{%- capture fixed_old %}<td>{{ pc.fixed }}</td>{% endcapture %}
+{%- capture fixed_new %}<td class="is-accent">{{ pc.fixed }}</td>{% endcapture %}
+{%- assign body = body | replace_first: fixed_old, fixed_new %}
+{%- endif %}
+
+{%- assign fix_parts = body | split: '<h2 id="fix">Fix</h2>' %}
+{%- if fix_parts.size == 2 %}
+{%- assign fix_first = fix_parts[1] | split: "</p>" | first %}
+{%- assign fix_text = fix_first | strip %}
+{%- assign fix_head = fix_text | slice: 0, 3 %}
+{%- if fix_head == "<p>" %}{% unless fix_text contains "<br" %}
+{%- assign fix_text = fix_text | remove_first: "<p>" | strip %}
+{%- assign fix_last = fix_text | size | minus: 1 %}
+{%- assign fix_end = fix_text | slice: fix_last %}
+{%- if fix_end == "." %}{% assign fix_text = fix_text | slice: 0, fix_last %}{% endif %}
+{%- capture fix_old %}<h2 id="fix">Fix</h2>{{ fix_first }}</p>{% endcapture %}
+{%- capture fix_new %}<h2 id="fix">Fix</h2>
+<p class="fix-line"><span class="fix-pill">{{ fix_text }}</span></p>{% endcapture %}
+{%- assign body = body | replace_first: fix_old, fix_new %}
+{%- endunless %}{% endif %}
+{%- endif %}
+
+{%- assign tl_parts = body | split: '<h2 id="timeline">Timeline</h2>' %}
+{%- if tl_parts.size == 2 %}
+{%- assign tl_rest = tl_parts[1] | strip %}
+{%- assign tl_head = tl_rest | slice: 0, 4 %}
+{%- if tl_head == "<ul>" %}
+{%- assign tl_old = tl_rest | split: "</ul>" | first %}
+{%- assign tl_items = tl_old | split: "<li>" %}
+{%- capture tl_new %}<ul class="tl-list">
+{%- for it in tl_items offset: 1 %}
+{%- assign it_body = it | split: "</li>" | first %}
+{%- assign it_date = it_body | slice: 0, 10 %}
+{%- assign it_sep = it_body | slice: 10, 2 %}
+  <li>
+  {%- if it_sep == ": " %}<time class="tl-date" datetime="{{ it_date }}">{{ it_date }}</time><span class="tl-text">{{ it_body | slice: 12, 100000 }}</span>
+  {%- else %}<span class="tl-date"></span><span class="tl-text">{{ it_body }}</span>
+  {%- endif %}</li>
+{%- endfor %}
+{% endcapture %}
+{%- assign body = body | replace_first: tl_old, tl_new %}
+{%- endif %}
+{%- endif %}
+
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  <p class="byline">
-    By <a href="{{ '/about/' | relative_url }}">{{ site.name }}</a> &middot;
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-  </p>
-  {{ content }}
-  <p class="back"><a href="{{ '/research/' | relative_url }}">All research</a> &middot; <a href="{{ '/cves/' | relative_url }}">All CVEs</a></p>
+  <header class="hero post-hero">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="crumbs"><a href="{{ '/research/' | relative_url }}">~/research</a>/{{ slug }}</p>
+      <p class="row-meta post-meta">
+        {%- if pc %}
+        <span class="row-cve">{{ page.cve }}</span>
+        {%- include sev-pill.html cve=pc large=true %}
+        {%- else %}
+        <span class="pill pill-lg info">Research</span>
+        {%- endif %}
+        {%- for t in page.tags %}
+        <span class="tag">#{{ t }}</span>
+        {%- endfor %}
+      </p>
+      <h1 class="h1-post">{{ short_title }}</h1>
+      <p class="byline">
+        by <a href="{{ '/about/' | relative_url }}">{{ site.name }}</a> &middot;
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      </p>
+    </div>
+  </header>
+
+  <div class="container post-layout">
+    <div class="prose">
+      {{ body }}
+      <nav class="post-nav" aria-label="More writeups">
+        <a class="btn" href="{{ '/research/' | relative_url }}"><span class="btn-arrow" aria-hidden="true">&larr;</span>All research</a>
+        <a class="btn" href="{{ '/cves/' | relative_url }}">All CVEs<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      </nav>
+    </div>
+
+    <aside class="post-aside">
+      {%- assign h2_parts = body | split: '<h2 id="' %}
+      {%- if h2_parts.size > 1 %}
+      <nav class="toc" aria-label="On this page">
+        <p class="eyebrow">On this page</p>
+        <ol>
+          {%- for part in h2_parts offset: 1 %}
+          {%- assign h_id = part | split: '"' | first %}
+          {%- assign h_text = part | split: "</h2>" | first | split: '">' | last %}
+          <li><a href="#{{ h_id }}"{% if forloop.first %} class="is-active"{% endif %}><span class="toc-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{{ h_text }}</a></li>
+          {%- endfor %}
+        </ol>
+      </nav>
+      {%- endif %}
+      {%- if page.chain %}
+      <div class="note-card">
+        <p class="eyebrow">Exploit chain</p>
+        <p>
+          {%- for s in page.chain.steps %}
+          {%- if forloop.last %}<span class="chain-end">{{ s | escape }}</span>
+          {%- else %}{{ s | escape }} <span class="chain-arrow" aria-hidden="true">&rarr;</span> {% endif %}
+          {%- endfor %}<br>
+          <span class="chain-caption">{{ page.chain.caption }}</span>
+        </p>
+      </div>
+      {%- endif %}
+    </aside>
+  </div>
 </article>
 <script type="application/ld+json">
 {

@@ -1,10 +1,10 @@
-<ul class="profiles">
+<ul class="chips">
   {%- for p in site.data.profiles %}
   {%- if p.hidden %}{% continue %}{% endif %}
   <li>
-    <a href="{{ p.url }}" rel="me">
-      <span>{{ p.name }}</span>
-      {%- if p.handle %}<span class="profile-handle">{{ p.handle }}</span>{% endif %}
+    <a class="chip" href="{{ p.url }}" rel="me">
+      {{- p.name | downcase | remove: " " -}}
+      {%- if p.handle %}<span class="chip-sep">/</span><span class="chip-handle">{{ p.handle }}</span>{% endif -%}
     </a>
   </li>
   {%- endfor %}

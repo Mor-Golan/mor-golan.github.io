@@ -3,12 +3,80 @@ layout: default
 title: CVEs
 description: Published CVEs discovered and reported by Mor Golan, with severity, affected versions and advisories.
 ---
+{%- assign cves = site.data.cves %}
 {%- assign patchstack = site.data.profiles | where: "name", "Patchstack" | first %}
-<h1>CVEs by Mor Golan</h1>
-<p class="lede">
-  {{ site.data.cves.size }} published CVEs, each crediting me by name in the official CVE record.
-  Search them on <a href="https://www.cve.org/CVERecord/SearchResults?query=Mor+Golan">cve.org</a>
-  or on the <a href="{{ patchstack.url }}">Patchstack researcher profile</a>.
-</p>
+{%- assign top = cves | sort: "cvss" | last %}
+{%- assign serious = cves | where_exp: "c", "c.cvss >= 7" %}
+{%- assign fixed = cves | where_exp: "c", "c.fixed" %}
+{%- assign levels = "Critical,High,Medium,Low" | split: "," %}
+{%- assign split_parts = "" | split: "" %}
+{%- for level in levels %}
+{%- assign n = cves | where: "severity", level | size %}
+{%- if n > 0 %}
+{%- capture part %}{{ n }} {{ level | downcase }}{% endcapture %}
+{%- assign split_parts = split_parts | push: part %}
+{%- endif %}
+{%- endfor %}
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="prompt">$ cve search --credit "{{ site.name }}"</p>
+    <h1 class="h1-page">CVEs by {{ site.name }}</h1>
+    <p class="lede">
+      {{ cves.size }} published CVEs, each crediting me by name in the official CVE record.
+      Search them on <a href="https://www.cve.org/CVERecord/SearchResults?query=Mor+Golan">cve.org</a>
+      or on the <a href="{{ patchstack.url }}">Patchstack researcher profile</a>.
+    </p>
 
-{% include cve-list.html cves=site.data.cves %}
+    <div class="cve-summary">
+      <dl class="stat-strip stat-strip-sm">
+        <div class="stat"><dt>Total</dt><dd>{{ cves.size }}</dd></div>
+        {%- for level in levels %}
+        {%- assign n = cves | where: "severity", level | size %}
+        {%- if n > 0 %}
+        <div class="stat"><dt>{{ level }}</dt><dd class="sev-{{ level | downcase }}">{{ n }}</dd></div>
+        {%- endif %}
+        {%- endfor %}
+        <div class="stat"><dt>Highest CVSS</dt><dd class="sev-{{ top.severity | downcase }}">{{ top.cvss }}</dd></div>
+      </dl>
+      <div class="split-wrap">
+        <div class="split" role="img" aria-label="Severity split: {{ split_parts | join: ', ' }}">
+          {%- for level in levels %}
+          {%- assign n = cves | where: "severity", level | size %}
+          {%- if n > 0 %}
+          <span class="sev-{{ level | downcase }}" style="--n: {{ n }}"></span>
+          {%- endif %}
+          {%- endfor %}
+        </div>
+        <p class="split-notes">
+          <span>{{ serious.size }} of {{ cves.size }} rated High or Critical</span>
+          <span>all in WordPress plugins</span>
+          {%- if fixed.size == cves.size %}
+          <span>all fixed upstream</span>
+          {%- endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container section-list">
+  <div class="toolbar">
+    <div class="filters" role="group" aria-label="Filter by severity" hidden>
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">all<span class="filter-count">{{ cves.size }}</span></button>
+      {%- for level in levels %}
+      {%- assign n = cves | where: "severity", level | size %}
+      {%- if n > 0 %}
+      <button class="filter" type="button" data-filter="{{ level | downcase }}" aria-pressed="false">{{ level | downcase }}<span class="filter-count">{{ n }}</span></button>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    <p class="showing" aria-live="polite">showing <strong data-shown>{{ cves.size }}</strong> of {{ cves.size }} &middot; newest first</p>
+  </div>
+
+  <ul class="cve-cards">
+    {%- for c in cves %}
+    {% include cve-card.html cve=c %}
+    {%- endfor %}
+  </ul>
+</section>

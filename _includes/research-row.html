@@ -1,0 +1,48 @@
+{%- comment %}
+One writeup as a full row link. CVE posts show the id and severity, other posts a Research pill.
+The title drops the "CVE-xxxx: " prefix because the id is shown as a tag.
+Pass full=true on the Research page for the excerpt and the "read" label.
+{% endcomment %}
+{%- assign rr_post = include.post %}
+{%- assign rr_title = rr_post.title %}
+{%- assign rr_excerpt = rr_post.description %}
+{%- assign rr_cve = nil %}
+{%- if rr_post.cve %}
+{%- assign rr_prefix = rr_post.cve | append: ": " %}
+{%- assign rr_title = rr_title | remove_first: rr_prefix %}
+{%- assign rr_excerpt = rr_excerpt | remove_first: rr_prefix %}
+{%- assign rr_cve = site.data.cves | where: "id", rr_post.cve | first %}
+{%- endif %}
+{%- capture rr_meta %}
+<span class="row-meta">
+  {%- if rr_cve %}
+  <span class="row-cve">{{ rr_post.cve }}</span>
+  {%- include sev-pill.html cve=rr_cve %}
+  {%- else %}
+  <span class="pill info">Research</span>
+  {%- endif %}
+  {%- for t in rr_post.tags %}
+  <span class="tag">#{{ t }}</span>
+  {%- endfor %}
+</span>
+{%- endcapture %}
+<li>
+  <a class="row" href="{{ rr_post.url | relative_url }}">
+    <time class="row-date" datetime="{{ rr_post.date | date_to_xmlschema }}">{{ rr_post.date | date: "%Y-%m-%d" }}</time>
+    <span class="row-main">
+      {%- if include.full %}
+      {{ rr_meta }}
+      <span class="row-title">{{ rr_title }}</span>
+      <span class="row-excerpt">{{ rr_excerpt | slice: 0 | upcase }}{{ rr_excerpt | slice: 1, 1000 | escape }}</span>
+      {%- else %}
+      <span class="row-title">{{ rr_title }}</span>
+      {{ rr_meta }}
+      {%- endif %}
+    </span>
+    {%- if include.full %}
+    <span class="row-go">read<span aria-hidden="true">&rarr;</span></span>
+    {%- else %}
+    <span class="row-go" aria-hidden="true">&rarr;</span>
+    {%- endif %}
+  </a>
+</li>

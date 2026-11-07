@@ -6,69 +6,114 @@ description: Mor Golan, OSCP certified cybersecurity team lead, penetration test
 {%- assign top = cves | sort: "cvss" | last %}
 {%- assign serious = cves | where_exp: "c", "c.cvss >= 7" %}
 
-{% include intro.html heading=site.name %}
+<section class="hero hero-home">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-split">
+      <div class="hero-text">
+        <p class="prompt">$ whoami</p>
+        <h1 class="h1-home">{{ site.name }}<span class="cursor" aria-hidden="true"></span></h1>
+        {% include intro.html %}
+        <div class="actions">
+          <a class="btn btn-primary" href="{{ '/cves/' | relative_url }}">View CVEs<span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn" href="{{ '/research/' | relative_url }}">Read research</a>
+        </div>
+      </div>
 
-<ul class="stats">
-  <li><strong>{{ cves.size }}</strong> published CVEs</li>
-  <li><strong>{{ serious.size }}</strong> rated High or Critical</li>
-  <li><strong>{{ top.cvss }}</strong> highest CVSS</li>
-</ul>
+      <div class="terminal">
+        <div class="titlebar">
+          <span class="titlebar-dot" aria-hidden="true"></span>
+          <span class="titlebar-dot" aria-hidden="true"></span>
+          <span class="titlebar-dot" aria-hidden="true"></span>
+          <span class="titlebar-name">profile.txt</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="t-user">mor@golan</span><span class="t-dim">:~$</span> cat profile.txt</p>
+          <div class="terminal-card">
+            {%- if site.photo and site.photo != "" %}
+            <span class="ring"><img src="{{ site.photo | relative_url }}" alt="Photo of {{ site.name }}" width="96" height="96"></span>
+            {%- endif %}
+            <dl class="terminal-facts">
+              <dt>role</dt><dd>{{ site.job_title }}</dd>
+              <dt>org</dt><dd>{{ site.employer }}</dd>
+              <dt>focus</dt><dd>{{ site.focus }}</dd>
+              <dt>based</dt><dd>{{ site.location }}</dd>
+              <dt>cert</dt><dd class="is-accent">OSCP</dd>
+              <dt>handle</dt><dd>{{ site.handles }}</dd>
+            </dl>
+          </div>
+          <p aria-hidden="true"><span class="t-user">mor@golan</span><span class="t-dim">:~$ _</span></p>
+        </div>
+      </div>
+    </div>
 
-<section>
-  <h2>Badges</h2>
-  <ul class="badges">
+    <dl class="stat-strip">
+      <div class="stat"><dt>Published CVEs</dt><dd>{{ cves.size }}</dd></div>
+      <div class="stat"><dt>Rated High or Critical</dt><dd>{{ serious.size }}</dd></div>
+      <div class="stat">
+        <dt>Highest CVSS</dt>
+        <dd class="sev-{{ top.severity | downcase }}">{{ top.cvss }}<span class="stat-unit">{{ top.severity | downcase }}</span></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="container section">
+  {% include section-head.html title="Badges" %}
+  <ul class="badge-grid">
     {%- for b in site.data.badges %}
     <li>
-      <a href="{{ b.url }}">
-        <span class="badge-art" style="background: {{ b.bg | default: '#ffffff' }}">
-          <img src="{{ b.image | relative_url }}" alt="{{ b.issuer }} {{ b.title }} badge" loading="lazy">
+      <a class="badge-card" href="{{ b.url }}">
+        <span class="badge-art"><img src="{{ b.image | relative_url }}" alt="{{ b.issuer }} {{ b.title }} badge" loading="lazy"></span>
+        <span class="badge-text">
+          <span class="badge-title">{{ b.title }}</span>
+          <span class="badge-issuer">{{ b.issuer }}{% if b.note %} &middot; <span class="accent">{{ b.note }}</span>{% endif %}</span>
         </span>
-        <span class="badge-title">{{ b.title }}</span>
-        <span class="badge-issuer">{{ b.issuer }}{% if b.note %} &middot; {{ b.note }}{% endif %}</span>
       </a>
     </li>
     {%- endfor %}
   </ul>
 </section>
 
-<section>
-  <h2>Profiles</h2>
+<section class="container section">
+  {% include section-head.html title="Profiles" %}
   {% include profiles.html %}
 </section>
 
 {%- if site.posts.size > 0 %}
-<section>
-  <div class="section-head">
-    <h2>Latest research</h2>
-    <a href="{{ '/research/' | relative_url }}">All writeups &rarr;</a>
-  </div>
-  <ul class="post-list">
+<section class="container section">
+  {% include section-head.html title="Latest research" link_url="/research/" link_text="all writeups" class="section-head-tight" %}
+  <ul class="rows">
     {%- for post in site.posts limit: 3 %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-    </li>
+    {% include research-row.html post=post %}
     {%- endfor %}
   </ul>
 </section>
 {%- endif %}
 
-<section>
-  <div class="section-head">
-    <h2>Latest CVEs</h2>
-    <a href="{{ '/cves/' | relative_url }}">All {{ cves.size }} CVEs &rarr;</a>
-  </div>
-  {% include cve-list.html cves=cves limit=5 %}
+<section class="container section">
+  {%- capture all_cves %}all {{ cves.size }} CVEs{% endcapture %}
+  {% include section-head.html title="Latest CVEs" link_url="/cves/" link_text=all_cves class="section-head-mid" %}
+  <ul class="cve-table">
+    {%- for c in cves limit: 5 %}
+    {% include cve-row.html cve=c %}
+    {%- endfor %}
+  </ul>
 </section>
 
-<section>
-  <h2>Projects</h2>
-  <ul class="projects">
+<section class="container section">
+  {% include section-head.html title="Projects" %}
+  <ul class="card-grid">
     {%- for p in site.data.projects %}
     <li>
-      <a href="{{ p.url }}">{{ p.name }}</a>
-      <span class="project-kind">{{ p.kind }}</span>
-      <p>{{ p.description | replace: ". ", ".<br>" }}</p>
+      <article class="project">
+        <div class="project-head">
+          <h3>{{ p.name }}</h3>
+          <span class="kind">{{ p.kind }}</span>
+        </div>
+        <p>{{ p.description | replace: ". ", ".<br>" }}</p>
+        <a class="section-link" href="{{ p.url }}">view project&nbsp;<span aria-hidden="true">&rarr;</span></a>
+      </article>
     </li>
     {%- endfor %}
   </ul>

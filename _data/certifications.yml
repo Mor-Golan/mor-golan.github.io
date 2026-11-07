@@ -1,0 +1,41 @@
+# Certifications on the About page. url is optional and shows a "credential" link.
+- title: Offensive Security Certified Professional (OSCP)
+  issuer: OffSec
+  year: 2024
+  url: https://www.credential.net/7437af3d-4885-44d0-8dbd-14f04f72a8bf
+
+- title: Penetration Tester path
+  issuer: Hack The Box
+  year: 2024
+  url: https://academy.hackthebox.com/achievement/badge/99dfcfca-a8fc-11ee-bfb6-bea50ffe6cb4
+
+- title: Dante Pro Lab
+  issuer: Hack The Box
+  year: 2024
+
+- title: "AWS Cloud Quest: Cloud Practitioner"
+  issuer: Amazon Web Services
+  year: 2025
+  url: https://www.credly.com/badges/2e641ca1-bc7a-46d9-8117-9f8c404669f6/public_url
+
+- title: Attacking and Defending AWS
+  issuer: TryHackMe
+  year: 2025
+
+- title: 15 courses on Claude Code, agents, subagents, MCP and AI Fluency
+  issuer: Anthropic
+  year: 2026
+
+- title: Google Cybersecurity Certificate
+  issuer: Google
+  year: 2024
+  url: https://coursera.org/share/f6c217271a5a177b31210c240c653edf
+
+- title: CS50's Introduction to Programming with Python
+  issuer: Harvard University
+  year: 2024
+  url: https://certificates.cs50.io/2b7a7147-c02b-4cb1-a936-eae0ce7ec81c.pdf
+
+- title: Cyber Security Specialist
+  issuer: ITQ
+  year: 2022

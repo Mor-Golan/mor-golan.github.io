@@ -1,0 +1,11 @@
+{%- comment %}"## Title" heading with a rule that fills the row. Optional: link_url + link_text, or note.{% endcomment %}
+<div class="section-head{% if include.class %} {{ include.class }}{% endif %}">
+  <h2>{{ include.title }}</h2>
+  <span class="section-rule" aria-hidden="true"></span>
+  {%- if include.link_url %}
+  <a class="section-link" href="{{ include.link_url | relative_url }}">{{ include.link_text }}&nbsp;<span aria-hidden="true">&rarr;</span></a>
+  {%- endif %}
+  {%- if include.note %}
+  <span class="section-note">{{ include.note }}</span>
+  {%- endif %}
+</div>

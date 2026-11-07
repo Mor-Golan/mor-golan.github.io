@@ -1,10 +1,13 @@
-<section class="hero">
-  {%- if site.photo and site.photo != "" %}
-  <img class="photo" src="{{ site.photo | relative_url }}" alt="Photo of {{ site.name }}" width="160" height="160">
-  {%- endif %}
-  <div class="hero-text">
-    <h1>{{ include.heading }}</h1>
-    <p class="role">{{ site.role | replace: " | ", " &middot; " }}</p>
-    <p class="bio">{{ site.bio | replace: ". ", ".<br>" }}</p>
-  </div>
-</section>
+{%- comment %}Role line and bio, one paragraph per sentence. Pass wide=true for the About page width.{% endcomment %}
+<p class="role">
+  {%- assign roles = site.role | split: " | " %}
+  {%- for r in roles %}
+  <span>{{ r }}</span>{% unless forloop.last %}<span class="role-sep" aria-hidden="true">/</span>{% endunless %}
+  {%- endfor %}
+</p>
+<div class="bio{% if include.wide %} bio-wide{% endif %}">
+  {%- assign sentences = site.bio | split: ". " %}
+  {%- for s in sentences %}
+  <p>{{ s }}{% unless forloop.last %}.{% endunless %}</p>
+  {%- endfor %}
+</div>

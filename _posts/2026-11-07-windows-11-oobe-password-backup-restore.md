@@ -3,6 +3,7 @@ layout: post
 title: "Windows 11 OOBE: Password Only Sign In Restored Every PC Backup and Saved Credentials"
 description: "Windows 11 setup let me skip the Authenticator prompt with only a password, then restore every PC backup and saved credentials with no alert."
 permalink: /research/windows-11-oobe-password-backup-restore/
+tags: [windows, oobe]
 ---
 
 | | |

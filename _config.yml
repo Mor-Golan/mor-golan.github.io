@@ -6,6 +6,10 @@ title: "Mor Golan | Red Team, Penetration Testing, Bug Bounty"
 job_title: Cybersecurity Team Lead
 employer: QMasters Cyber Security Services
 role: "Cybersecurity Team Lead | Red Team | Penetration Testing | OSCP"
+# Extra lines for the profile.txt card on the homepage.
+focus: "PT · CTI · DFIR · SOAR · AI"
+location: Israel
+handles: "T-67 · t-66"
 bio: >-
   I'm Mor Golan, an OSCP certified cybersecurity team lead and vulnerability
   researcher at QMasters Cyber Security Services in Israel, leading

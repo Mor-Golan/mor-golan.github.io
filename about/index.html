@@ -3,7 +3,6 @@ layout: default
 title: About
 description: About Mor Golan, cybersecurity team lead at QMasters, OSCP, penetration tester, vulnerability researcher and bug bounty hunter.
 ---
-{% include intro.html heading="About Mor Golan" %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -13,84 +12,129 @@ description: About Mor Golan, cybersecurity team lead at QMasters, OSCP, penetra
 }
 </script>
 
-<h2>Experience</h2>
-<ul class="timeline">
-  <li>
-    <h3>Team Lead: SOAR, CTI, DFIR, PT, AI &amp; Vulnerability Assessment</h3>
-    <p class="meta">QMasters Cyber Security Services &middot; Sep 2025 to present</p>
-    <p>
-      I lead the team responsible for penetration testing, cyber threat intelligence,
-      digital forensics and incident response, security automation and vulnerability management.
-    </p>
-  </li>
-  <li>
-    <h3>Penetration Tester, CTI, SOAR, Incident Response &amp; Forensics</h3>
-    <p class="meta">QMasters Cyber Security Services &middot; Apr 2024 to present</p>
-    <p>
-      Threat research and vulnerability analysis, threat hunting, malicious code and
-      network traffic analysis, and building security tools and processes.
-    </p>
-  </li>
-  <li>
-    <h3>SOC MDR Analyst</h3>
-    <p class="meta">QMasters Cyber Security Services &middot; Sep 2022 to Apr 2024</p>
-    <p>
-      Threat hunting, incident handling and cross platform investigations
-      across multiple EDR and SIEM platforms.
-    </p>
-  </li>
-  <li>
-    <h3>Founder, web development and SEO</h3>
-    <p class="meta">SEOPPC &middot; 2020 to 2023</p>
-  </li>
-</ul>
+<section class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="container hero-inner about-hero">
+    {%- if site.photo and site.photo != "" %}
+    <span class="ring ring-lg"><img src="{{ site.photo | relative_url }}" alt="Photo of {{ site.name }}" width="132" height="132"></span>
+    {%- endif %}
+    <div class="about-text">
+      <p class="prompt">$ cat about.md</p>
+      <h1 class="h1-page">About {{ site.name }}</h1>
+      {% include intro.html wide=true %}
+    </div>
+  </div>
+</section>
 
-<h2>Bug bounty and recognition</h2>
-<ul>
-  <li>
-    {{ site.data.cves.size }} published CVEs credited to me by name.
-    <a href="{{ '/cves/' | relative_url }}">See all CVEs</a>.
-  </li>
-  <li>HackerOne: Level 2 Signal Specialist, and a High severity bounty on a Tier 1 asset.</li>
-  <li>Bugcrowd: Hall of Fame, Submission Shogun Level 2 and Bounty Bee Level 2.</li>
-  <li>Intigriti: Bronze Finder Level 1.</li>
-  <li>Hack The Box: completed the Penetration Tester path, a badge held by 0.07% of users.</li>
-</ul>
+<section class="container section">
+  {% include section-head.html title="Experience" note="git log --career" %}
+  <ol class="timeline">
+    <li class="tl-item is-current">
+      <span class="tl-when">2025-09 <span class="tl-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">to</span> now</span>
+      <div class="tl-body">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="tl-head">
+          <h3>Team Lead: SOAR, CTI, DFIR, PT, AI &amp; Vulnerability Assessment</h3>
+          <span class="tag-current">current</span>
+        </div>
+        <p class="tl-org">QMasters Cyber Security Services</p>
+        <p class="tl-desc">
+          I lead the team responsible for penetration testing, cyber threat intelligence,
+          digital forensics and incident response, security automation and vulnerability management.
+        </p>
+      </div>
+    </li>
+    <li class="tl-item is-current">
+      <span class="tl-when">2024-04 <span class="tl-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">to</span> now</span>
+      <div class="tl-body">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="tl-head">
+          <h3>Penetration Tester, CTI, SOAR, Incident Response &amp; Forensics</h3>
+          <span class="tag-current">current</span>
+        </div>
+        <p class="tl-org">QMasters Cyber Security Services</p>
+        <p class="tl-desc">
+          Threat research and vulnerability analysis, threat hunting, malicious code and
+          network traffic analysis, and building security tools and processes.
+        </p>
+      </div>
+    </li>
+    <li class="tl-item">
+      <span class="tl-when">2022-09 <span class="tl-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">to</span> 2024-04</span>
+      <div class="tl-body">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="tl-head"><h3>SOC MDR Analyst</h3></div>
+        <p class="tl-org">QMasters Cyber Security Services</p>
+        <p class="tl-desc">
+          Threat hunting, incident handling and cross platform investigations
+          across multiple EDR and SIEM platforms.
+        </p>
+      </div>
+    </li>
+    <li class="tl-item">
+      <span class="tl-when">2020 <span class="tl-arrow" aria-hidden="true">&rarr;</span><span class="visually-hidden">to</span> 2023</span>
+      <div class="tl-body">
+        <span class="tl-node" aria-hidden="true"></span>
+        <div class="tl-head"><h3>Founder, web development and SEO</h3></div>
+        <p class="tl-org">SEOPPC</p>
+      </div>
+    </li>
+  </ol>
+</section>
 
-<h2>Certifications</h2>
-<ul class="certs">
-  <li>
-    <a href="https://www.credential.net/7437af3d-4885-44d0-8dbd-14f04f72a8bf">Offensive Security Certified Professional (OSCP)</a>
-    <span>OffSec &middot; 2024</span>
-  </li>
-  <li>
-    <a href="https://academy.hackthebox.com/achievement/badge/99dfcfca-a8fc-11ee-bfb6-bea50ffe6cb4">Penetration Tester path</a>
-    <span>Hack The Box &middot; 2024</span>
-  </li>
-  <li>Dante Pro Lab <span>Hack The Box &middot; 2024</span></li>
-  <li>
-    <a href="https://www.credly.com/badges/2e641ca1-bc7a-46d9-8117-9f8c404669f6/public_url">AWS Cloud Quest: Cloud Practitioner</a>
-    <span>Amazon Web Services &middot; 2025</span>
-  </li>
-  <li>Attacking and Defending AWS <span>TryHackMe &middot; 2025</span></li>
-  <li>15 courses on Claude Code, agents, subagents, MCP and AI Fluency <span>Anthropic &middot; 2026</span></li>
-  <li>
-    <a href="https://coursera.org/share/f6c217271a5a177b31210c240c653edf">Google Cybersecurity Certificate</a>
-    <span>Google &middot; 2024</span>
-  </li>
-  <li>
-    <a href="https://certificates.cs50.io/2b7a7147-c02b-4cb1-a936-eae0ce7ec81c.pdf">CS50's Introduction to Programming with Python</a>
-    <span>Harvard University &middot; 2024</span>
-  </li>
-  <li>Cyber Security Specialist <span>ITQ &middot; 2022</span></li>
-</ul>
+<section class="container section">
+  {% include section-head.html title="Bug bounty and recognition" %}
+  <dl class="kv">
+    <div class="kv-row">
+      <dt>cves</dt>
+      <dd>{{ site.data.cves.size }} published CVEs credited to me by name. <a href="{{ '/cves/' | relative_url }}">See all CVEs</a></dd>
+    </div>
+    <div class="kv-row">
+      <dt>hackerone</dt>
+      <dd>Level 2 Signal Specialist, and a High severity bounty on a Tier 1 asset.</dd>
+    </div>
+    <div class="kv-row">
+      <dt>bugcrowd</dt>
+      <dd>Hall of Fame, Submission Shogun Level 2 and Bounty Bee Level 2.</dd>
+    </div>
+    <div class="kv-row">
+      <dt>intigriti</dt>
+      <dd>Bronze Finder Level 1.</dd>
+    </div>
+    <div class="kv-row">
+      <dt>hackthebox</dt>
+      <dd>Completed the Penetration Tester path, a badge held by 0.07% of users.</dd>
+    </div>
+  </dl>
+</section>
 
-<h2>AI and automation</h2>
-<p>
-  I design AI workflows across offensive security, defensive security and software development,
-  combining agent orchestration, iterative loops, fallback logic, reusable skills and MCP integrations
-  to coordinate complex tasks across many tools.
-</p>
+<section class="container section">
+  {% include section-head.html title="Certifications" %}
+  <ul class="cert-grid">
+    {%- for c in site.data.certifications %}
+    <li>
+      <article class="cert">
+        <div class="cert-top"><span class="cert-issuer">{{ c.issuer }}</span><span class="cert-year">{{ c.year }}</span></div>
+        <h3>{{ c.title }}</h3>
+        {%- if c.url %}
+        <a class="cert-link" href="{{ c.url }}">credential&nbsp;<span aria-hidden="true">&nearr;</span></a>
+        {%- endif %}
+      </article>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
 
-<h2>Profiles</h2>
-{% include profiles.html %}
+<section class="container section">
+  {% include section-head.html title="AI and automation" %}
+  <p class="statement">
+    I design AI workflows across offensive security, defensive security and software development,
+    combining agent orchestration, iterative loops, fallback logic, reusable skills and MCP integrations
+    to coordinate complex tasks across many tools.
+  </p>
+</section>
+
+<section class="container section">
+  {% include section-head.html title="Profiles" %}
+  {% include profiles.html %}
+</section>
