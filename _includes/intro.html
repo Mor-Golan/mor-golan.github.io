@@ -1,11 +1,11 @@
-{%- comment %}Role line and bio, one paragraph per sentence. Pass wide=true for the About page width.{% endcomment %}
+{%- comment %}Role line and bio, one paragraph per sentence.{% endcomment %}
 <p class="role">
   {%- assign roles = site.role | split: " | " %}
   {%- for r in roles %}
   <span>{{ r }}</span>{% unless forloop.last %}<span class="role-sep" aria-hidden="true">/</span>{% endunless %}
   {%- endfor %}
 </p>
-<div class="bio{% if include.wide %} bio-wide{% endif %}">
+<div class="bio">
   {%- assign sentences = site.bio | split: ". " %}
   {%- for s in sentences %}
   <p>{{ s }}{% unless forloop.last %}.{% endunless %}</p>
