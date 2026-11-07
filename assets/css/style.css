@@ -70,7 +70,7 @@
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Layout */
-  --container: 1240px;
+  --container: none;          /* full width, Mor's choice over the design's 1240px */
   --gutter: clamp(16px, 4vw, 40px);
   --section-gap: clamp(56px, 8vw, 96px);
   --radius-pill: 4px;
