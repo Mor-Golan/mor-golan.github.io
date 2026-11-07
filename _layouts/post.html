@@ -8,4 +8,20 @@ layout: default
     <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
   </p>
   {{ content }}
+  <p class="back"><a href="{{ '/research/' | relative_url }}">All research</a> &middot; <a href="{{ '/cves/' | relative_url }}">All CVEs</a></p>
 </article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "url": "{{ page.url | absolute_url }}",
+  "mainEntityOfPage": "{{ page.url | absolute_url }}",
+  "author": { "@type": "Person", "@id": "{{ site.url }}/#person", "name": {{ site.name | jsonify }}, "url": "{{ site.url }}/" }
+  {%- if page.cve %},
+  "about": { "@type": "Thing", "name": {{ page.cve | jsonify }}, "sameAs": "https://www.cve.org/CVERecord?id={{ page.cve }}" }
+  {%- endif %}
+}
+</script>

@@ -11,6 +11,7 @@
   affected: "3.2.3"
   fixed: "3.2.4"
   advisory: "https://patchstack.com/database/wordpress/plugin/wp-social/vulnerability/wordpress-wp-social-plugin-3-2-3-cross-site-request-forgery-csrf-vulnerability"
+  writeup: "/research/cve-2026-122675-wp-social/"
 
 - id: "CVE-2026-39732"
   published: "2026-10-30"
@@ -23,6 +24,7 @@
   affected: "2.5.13"
   fixed: "2.5.14"
   advisory: "https://patchstack.com/database/wordpress/plugin/serbian-transliteration/vulnerability/wordpress-transliterator-plugin-2-5-13-sql-injection-vulnerability"
+  writeup: "/research/cve-2026-39732-serbian-transliteration/"
 
 - id: "CVE-2026-61989"
   published: "2026-10-29"
@@ -35,6 +37,7 @@
   affected: "3.5.25"
   fixed: "3.5.26"
   advisory: "https://patchstack.com/database/wordpress/plugin/easy-property-listings/vulnerability/wordpress-easy-property-listings-plugin-3-5-25-cross-site-scripting-xss-vulnerability"
+  writeup: "/research/cve-2026-61989-easy-property-listings/"
 
 - id: "CVE-2026-115596"
   published: "2026-10-28"
@@ -47,6 +50,7 @@
   affected: "3.6.4"
   fixed: "3.6.5"
   advisory: "https://patchstack.com/database/wordpress/plugin/ecommerce-product-catalog/vulnerability/wordpress-ecommerce-product-catalog-plugin-3-6-4-cross-site-scripting-xss-vulnerability"
+  writeup: "/research/cve-2026-115596-ecommerce-product-catalog/"
 
 - id: "CVE-2026-112869"
   published: "2026-10-24"
@@ -59,6 +63,7 @@
   affected: "2.6"
   fixed: "2.7"
   advisory: "https://patchstack.com/database/wordpress/plugin/opening-hours/vulnerability/wordpress-we-re-open-plugin-2-6-cross-site-scripting-xss-vulnerability"
+  writeup: "/research/cve-2026-112869-opening-hours/"
 
 - id: "CVE-2026-112222"
   published: "2026-10-19"
@@ -71,6 +76,7 @@
   affected: "1.8.0.744"
   fixed: "1.8.1.759"
   advisory: "https://patchstack.com/database/wordpress/plugin/surferseo/vulnerability/wordpress-surfer-plugin-1-8-0-744-broken-access-control-vulnerability"
+  writeup: "/research/cve-2026-112222-surferseo/"
 
 - id: "CVE-2026-95597"
   published: "2026-10-09"
@@ -83,6 +89,7 @@
   affected: "5.5.17"
   fixed: "5.5.18"
   advisory: "https://patchstack.com/database/wordpress/plugin/pgall-for-woocommerce/vulnerability/wordpress-plugin-5-5-17-settings-change-vulnerability"
+  writeup: "/research/cve-2026-95597-pgall-for-woocommerce/"
 
 - id: "CVE-2026-94641"
   published: "2026-10-09"
@@ -95,6 +102,7 @@
   affected: "1.2.73"
   fixed: "1.2.74"
   advisory: "https://patchstack.com/database/wordpress/plugin/userswp/vulnerability/wordpress-userswp-plugin-1-2-73-cross-site-scripting-xss-vulnerability"
+  writeup: "/research/cve-2026-94641-userswp/"
 
 - id: "CVE-2026-96838"
   published: "2026-09-30"
@@ -107,6 +115,7 @@
   affected: "2.3.1"
   fixed: "2.3.2"
   advisory: "https://patchstack.com/database/wordpress/plugin/wc-blacklist-manager/vulnerability/wordpress-blacklist-manager-8211-woocommerce-anti-fraud-blacklist-amp-checkout-verification-plugin-2-3-1-cross-site-request-forgery-csrf-vulnerability"
+  writeup: "/research/cve-2026-96838-wc-blacklist-manager/"
 
 - id: "CVE-2026-94074"
   published: "2026-09-30"
@@ -119,3 +128,4 @@
   affected: "1.6.12.29"
   fixed: "1.6.12.31"
   advisory: "https://patchstack.com/database/wordpress/plugin/simply-schedule-appointments/vulnerability/wordpress-simply-schedule-appointments-plugin-1-6-12-29-broken-access-control-vulnerability"
+  writeup: "/research/cve-2026-94074-simply-schedule-appointments/"

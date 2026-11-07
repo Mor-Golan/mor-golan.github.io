@@ -257,6 +257,37 @@ img { max-width: 100%; height: auto; }
 
 .byline { margin: 0 0 32px; color: var(--muted); font-size: 0.92rem; }
 
+.post h2 { margin-top: 40px; }
+.post img { border: 1px solid var(--border); border-radius: 8px; }
+.post .back { margin-top: 48px; font-size: 0.92rem; }
+
+.post table {
+  display: block;
+  overflow-x: auto;
+  margin: 0 0 24px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.post th, .post td {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post th:empty { padding: 0; border: 0; }
+.post td:first-child { color: var(--muted); white-space: nowrap; }
+
+/* Syntax highlighting (Rouge) */
+
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cp { color: var(--muted); }
+.highlight .gd { color: var(--critical); }
+.highlight .gi { color: var(--low); }
+.highlight .gu, .highlight .gh { color: var(--muted); font-weight: 600; }
+.highlight .s, .highlight .s1, .highlight .s2 { color: var(--medium); }
+.highlight .k, .highlight .kd, .highlight .nb { color: var(--accent); }
+
 /* Badges */
 
 .badges {
