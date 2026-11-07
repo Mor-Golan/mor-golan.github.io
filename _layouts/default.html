@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if page.title %}
+  {%- assign full_title = page.title | append: " | " | append: site.title %}
+  {%- else %}
+  {%- assign full_title = site.title %}
+  {%- endif %}
+  {%- assign description = page.description | default: site.bio | strip_html | normalize_whitespace %}
+  <title>{{ full_title | escape }}</title>
+  <meta name="description" content="{{ description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ full_title | escape }}">
+  <meta property="og:description" content="{{ description | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}profile{% endif %}">
+  {%- if site.photo and site.photo != "" %}
+  <meta property="og:image" content="{{ site.photo | absolute_url }}">
+  {%- endif %}
+  <meta name="twitter:card" content="summary">
+  {%- if site.google_site_verification and site.google_site_verification != "" %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+  {%- endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% include person-jsonld.html %}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.name }}</a>
+      <nav aria-label="Main">
+        {%- for item in site.nav %}
+        {%- assign current = false %}
+        {%- if page.url == item.url %}{% assign current = true %}
+        {%- elsif item.url != "/" and page.url contains item.url %}{% assign current = true %}
+        {%- endif %}
+        <a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; {{ site.time | date: "%Y" }} {{ site.name }}</p>
+      <p class="footer-links">
+        {%- for p in site.data.profiles %}
+        <a href="{{ p.url }}" rel="me">{{ p.name }}</a>{% unless forloop.last %} &middot;{% endunless %}
+        {%- endfor %}
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

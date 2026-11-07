@@ -1,0 +1,24 @@
+---
+layout: default
+title: Research
+description: Vulnerability writeups and security research by Mor Golan, covering red teaming, penetration testing and bug bounty findings.
+---
+<h1>Research by Mor Golan</h1>
+<p class="lede">Technical writeups on vulnerabilities, red team techniques and tooling.</p>
+
+{%- if site.posts.size > 0 %}
+<ul class="post-list">
+  {%- for post in site.posts %}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+    {%- if post.description %}<p>{{ post.description }}</p>{% endif %}
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="empty">
+  Writeups are on the way. Meanwhile, see the
+  <a href="{{ '/cves/' | relative_url }}">published CVEs</a>.
+</p>
+{%- endif %}

@@ -1,0 +1,26 @@
+# Public profiles. Used for the profile links and for sameAs in the
+# Person schema, which tells Google these accounts are the same person.
+- name: LinkedIn
+  url: https://www.linkedin.com/in/morgo/
+
+- name: GitHub
+  handle: Mor-Golan
+  url: https://github.com/Mor-Golan
+
+- name: HackerOne
+  handle: t-66
+  url: https://hackerone.com/t-66
+
+- name: Bugcrowd
+  handle: T-67
+  url: https://bugcrowd.com/h/T-67
+
+- name: Intigriti
+  handle: t_67
+  url: https://app.intigriti.com/researcher/profile/t_67
+
+- name: Hack The Box
+  url: https://profile.hackthebox.com/profile/01a1b5a9-6648-7068-8ffc-cc678021651d
+
+- name: Patchstack
+  url: https://patchstack.com/database/researchers/2c5f99b5-ccfe-41e7-be10-43335f9bf195

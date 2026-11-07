@@ -1,0 +1,10 @@
+<ul class="profiles">
+  {%- for p in site.data.profiles %}
+  <li>
+    <a href="{{ p.url }}" rel="me">
+      <span>{{ p.name }}</span>
+      {%- if p.handle %}<span class="profile-handle">{{ p.handle }}</span>{% endif %}
+    </a>
+  </li>
+  {%- endfor %}
+</ul>

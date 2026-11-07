@@ -1,0 +1,58 @@
+---
+layout: default
+description: Mor Golan is an OSCP-certified cybersecurity team lead, penetration tester and bug bounty hunter with published CVEs.
+---
+{%- assign cves = site.data.cves %}
+{%- assign top = cves | sort: "cvss" | last %}
+{%- assign serious = cves | where_exp: "c", "c.cvss >= 7" %}
+
+{% include intro.html heading=site.name %}
+
+<ul class="stats">
+  <li><strong>{{ cves.size }}</strong> published CVEs</li>
+  <li><strong>{{ serious.size }}</strong> rated High or Critical</li>
+  <li><strong>{{ top.cvss }}</strong> highest CVSS</li>
+</ul>
+
+<section>
+  <h2>Profiles</h2>
+  {% include profiles.html %}
+</section>
+
+{%- if site.posts.size > 0 %}
+<section>
+  <div class="section-head">
+    <h2>Latest research</h2>
+    <a href="{{ '/research/' | relative_url }}">All writeups &rarr;</a>
+  </div>
+  <ul class="post-list">
+    {%- for post in site.posts limit: 3 %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+<section>
+  <div class="section-head">
+    <h2>Latest CVEs</h2>
+    <a href="{{ '/cves/' | relative_url }}">All {{ cves.size }} CVEs &rarr;</a>
+  </div>
+  {% include cve-list.html cves=cves limit=5 %}
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <ul class="projects">
+    {%- for p in site.data.projects %}
+    <li>
+      <a href="{{ p.url }}">{{ p.name }}</a>
+      <span class="project-kind">{{ p.kind }}</span>
+      <p>{{ p.description }}</p>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>

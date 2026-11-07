@@ -1,0 +1,42 @@
+# Identity: every page reads name, role, bio and photo from here,
+# so they stay identical across the site. Keep them in sync with
+# GitHub, LinkedIn and the bug bounty profiles.
+name: Mor Golan
+title: "Mor Golan | Red Team, Penetration Testing, Bug Bounty"
+job_title: Cybersecurity Team Lead
+employer: QMasters Cyber Security Services
+role: "Cybersecurity Team Lead | Red Team | Penetration Testing | OSCP"
+bio: >-
+  Mor Golan is an OSCP-certified cybersecurity team lead and vulnerability
+  researcher at QMasters Cyber Security Services in Israel, leading
+  penetration testing, cyber threat intelligence, DFIR, SOAR and
+  vulnerability assessment. Working both sides of the attack lifecycle,
+  Mor runs offensive engagements and leads incident response, and has
+  published multiple CVEs through independent research. Mor is also an
+  active bug bounty hunter on HackerOne, Bugcrowd, Intigriti and YesWeHack.
+# Square, 400x400 or larger. Use the same photo on every profile.
+photo: /assets/img/mor-golan.jpg
+# Content value of the Google Search Console verification meta tag.
+google_site_verification: ""
+
+nav:
+  - title: Home
+    url: /
+  - title: About
+    url: /about/
+  - title: Research
+    url: /research/
+  - title: CVEs
+    url: /cves/
+
+url: https://mor-golan.github.io
+baseurl: ""
+lang: en
+
+permalink: /research/:title/
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - README.md

@@ -1,0 +1,15 @@
+# Published apps, shown on the homepage.
+- name: YourSnitch
+  kind: Android security app
+  description: >-
+    Brings device monitoring into one place: camera and microphone access,
+    trackers, location, Bluetooth, DNS lookups with country-level
+    destinations, and app usage.
+  url: https://play.google.com/store/apps/details?id=com.morgolan.yoursnitch
+
+- name: Fight To The Death
+  kind: Android game
+  description: >-
+    A 2.5D team shooter inspired by Soldat, built in Unity. Capture the
+    flag, revive your squad and climb the ranks.
+  url: https://play.google.com/store/apps/details?id=com.morgo.fighttothedeath

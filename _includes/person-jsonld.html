@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ site.url }}/#person",
+  "name": {{ site.name | jsonify }},
+  "url": "{{ site.url }}/",
+  "jobTitle": {{ site.job_title | jsonify }},
+  "worksFor": { "@type": "Organization", "name": {{ site.employer | jsonify }} },
+  "description": {{ site.bio | jsonify }},
+  {%- if site.photo and site.photo != "" %}
+  "image": "{{ site.photo | absolute_url }}",
+  {%- endif %}
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "Offensive Security Certified Professional (OSCP)",
+    "credentialCategory": "certification",
+    "recognizedBy": { "@type": "Organization", "name": "OffSec" },
+    "url": "https://www.credential.net/7437af3d-4885-44d0-8dbd-14f04f72a8bf"
+  },
+  "knowsAbout": [
+    "Red Teaming", "Penetration Testing", "Bug Bounty", "Vulnerability Research",
+    "Web Application Security", "Digital Forensics and Incident Response",
+    "Cyber Threat Intelligence", "Security Automation"
+  ],
+  "sameAs": {{ site.data.profiles | map: "url" | jsonify }}
+}
+</script>

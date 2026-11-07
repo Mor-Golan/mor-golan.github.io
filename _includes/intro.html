@@ -1,0 +1,10 @@
+<section class="hero">
+  {%- if site.photo and site.photo != "" %}
+  <img class="photo" src="{{ site.photo | relative_url }}" alt="Photo of {{ site.name }}" width="160" height="160">
+  {%- endif %}
+  <div class="hero-text">
+    <h1>{{ include.heading }}</h1>
+    <p class="role">{{ site.role | replace: " | ", " &middot; " }}</p>
+    <p class="bio">{{ site.bio }}</p>
+  </div>
+</section>

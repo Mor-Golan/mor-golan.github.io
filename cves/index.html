@@ -1,0 +1,14 @@
+---
+layout: default
+title: CVEs
+description: Published CVEs discovered and reported by Mor Golan, with severity, affected versions and advisories.
+---
+{%- assign patchstack = site.data.profiles | where: "name", "Patchstack" | first %}
+<h1>CVEs by Mor Golan</h1>
+<p class="lede">
+  {{ site.data.cves.size }} published CVEs, each crediting Mor Golan in the official CVE record.
+  Search them on <a href="https://www.cve.org/CVERecord/SearchResults?query=Mor+Golan">cve.org</a>
+  or on the <a href="{{ patchstack.url }}">Patchstack researcher profile</a>.
+</p>
+
+{% include cve-list.html cves=site.data.cves %}
