@@ -40,3 +40,10 @@ plugins:
 
 exclude:
   - README.md
+
+# Keep the Search Console verification file out of the sitemap.
+defaults:
+  - scope:
+      path: "googlebc7b869785d55c57.html"
+    values:
+      sitemap: false
