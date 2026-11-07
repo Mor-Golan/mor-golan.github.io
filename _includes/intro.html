@@ -5,6 +5,6 @@
   <div class="hero-text">
     <h1>{{ include.heading }}</h1>
     <p class="role">{{ site.role | replace: " | ", " &middot; " }}</p>
-    <p class="bio">{{ site.bio }}</p>
+    <p class="bio">{{ site.bio | replace: ". ", ".<br>" }}</p>
   </div>
 </section>

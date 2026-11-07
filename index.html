@@ -1,6 +1,6 @@
 ---
 layout: default
-description: Mor Golan is an OSCP certified cybersecurity team lead, penetration tester and bug bounty hunter with published CVEs.
+description: Mor Golan, OSCP certified cybersecurity team lead, penetration tester and bug bounty hunter with published CVEs.
 ---
 {%- assign cves = site.data.cves %}
 {%- assign top = cves | sort: "cvss" | last %}
@@ -68,7 +68,7 @@ description: Mor Golan is an OSCP certified cybersecurity team lead, penetration
     <li>
       <a href="{{ p.url }}">{{ p.name }}</a>
       <span class="project-kind">{{ p.kind }}</span>
-      <p>{{ p.description }}</p>
+      <p>{{ p.description | replace: ". ", ".<br>" }}</p>
     </li>
     {%- endfor %}
   </ul>
