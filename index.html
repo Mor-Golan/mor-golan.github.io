@@ -15,6 +15,23 @@ description: Mor Golan is an OSCP-certified cybersecurity team lead, penetration
 </ul>
 
 <section>
+  <h2>Badges</h2>
+  <ul class="badges">
+    {%- for b in site.data.badges %}
+    <li>
+      <a href="{{ b.url }}">
+        <span class="badge-art" style="background: {{ b.bg | default: '#ffffff' }}">
+          <img src="{{ b.image | relative_url }}" alt="{{ b.issuer }} {{ b.title }} badge" loading="lazy">
+        </span>
+        <span class="badge-title">{{ b.title }}</span>
+        <span class="badge-issuer">{{ b.issuer }}{% if b.note %} &middot; {{ b.note }}{% endif %}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section>
   <h2>Profiles</h2>
   {% include profiles.html %}
 </section>

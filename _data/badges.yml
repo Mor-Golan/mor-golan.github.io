@@ -1,0 +1,35 @@
+# Badges shown on the homepage. bg is the tile color behind the image;
+# it defaults to white, so set it for images with a dark background.
+- title: "OSCP"
+  issuer: "OffSec"
+  image: /assets/img/badges/oscp.jpg
+  url: https://www.credential.net/7437af3d-4885-44d0-8dbd-14f04f72a8bf
+
+- title: "Penetration Tester path"
+  issuer: "Hack The Box"
+  note: "held by 0.07% of users"
+  image: /assets/img/badges/htb-penetration-tester.jpg
+  url: https://academy.hackthebox.com/achievement/badge/99dfcfca-a8fc-11ee-bfb6-bea50ffe6cb4
+
+- title: "Level 2 Signal Specialist"
+  issuer: "HackerOne"
+  image: /assets/img/badges/hackerone-milestone.jpg
+  bg: "#030329"
+  url: https://hackerone.com/t-66
+
+- title: "Submission Shogun & Bounty Bee Level 2"
+  issuer: "Bugcrowd"
+  note: "Hall of Fame"
+  image: /assets/img/badges/bugcrowd-level-2.jpg
+  bg: "#0c0d11"
+  url: https://bugcrowd.com/h/T-67
+
+- title: "Bronze Finder"
+  issuer: "Intigriti"
+  image: /assets/img/badges/intigriti-bronze-finder.jpg
+  url: https://app.intigriti.com/researcher/profile/t_67
+
+- title: "Cloud Quest: Cloud Practitioner"
+  issuer: "AWS"
+  image: /assets/img/badges/aws-cloud-quest.jpg
+  url: https://www.credly.com/badges/2e641ca1-bc7a-46d9-8117-9f8c404669f6/public_url

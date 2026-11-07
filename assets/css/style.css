@@ -244,6 +244,45 @@ img { max-width: 100%; height: auto; }
 
 .byline { margin: 0 0 32px; color: var(--muted); font-size: 0.92rem; }
 
+/* Badges */
+
+.badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badges a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.badges a:hover { border-color: var(--accent); }
+
+.badge-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.badge-art img { max-width: 100%; max-height: 104px; }
+.badge-title { font-size: 0.88rem; font-weight: 600; line-height: 1.3; }
+.badge-issuer { margin-top: 2px; color: var(--muted); font-size: 0.8rem; }
+
 /* Projects */
 
 .projects {
