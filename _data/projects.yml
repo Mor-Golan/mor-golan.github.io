@@ -3,7 +3,7 @@
   kind: Android security app
   description: >-
     Brings device monitoring into one place: camera and microphone access,
-    trackers, location, Bluetooth, DNS lookups with country-level
+    trackers, location, Bluetooth, DNS lookups with country level
     destinations, and app usage.
   url: https://play.google.com/store/apps/details?id=com.morgolan.yoursnitch
 

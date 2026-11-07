@@ -43,7 +43,7 @@ body {
 a { color: var(--accent); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+.wrap { padding: 0 clamp(16px, 4vw, 56px); }
 
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 8px; padding: 6px 10px; background: var(--surface); }
@@ -202,8 +202,21 @@ img { max-width: 100%; height: auto; }
 
 /* CVE list */
 
-.cve-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
-.cve { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.cve-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cve {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
 
 .cve-head {
   display: flex;
@@ -248,7 +261,7 @@ img { max-width: 100%; height: auto; }
 
 .badges {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -314,7 +327,14 @@ img { max-width: 100%; height: auto; }
 .timeline .meta { margin: 2px 0 6px; color: var(--muted); font-size: 0.88rem; }
 .timeline p { margin: 0; }
 
-.certs { margin: 0; padding: 0; list-style: none; }
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .certs li { padding: 10px 0; border-bottom: 1px solid var(--border); }
 .certs span { display: block; color: var(--muted); font-size: 0.85rem; }
 

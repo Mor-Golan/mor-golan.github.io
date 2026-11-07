@@ -98,7 +98,7 @@
 
 - id: "CVE-2026-96838"
   published: "2026-09-30"
-  product: "Blacklist Manager – WooCommerce Anti-Fraud, Blacklist & Checkout Verification"
+  product: "Blacklist Manager for WooCommerce"
   vendor: "YoOhw Studio"
   type: "Cross Site Request Forgery (CSRF)"
   cwe: "CWE-352"
