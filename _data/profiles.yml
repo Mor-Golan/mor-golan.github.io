@@ -26,5 +26,10 @@
 - name: Hack The Box
   url: https://profile.hackthebox.com/profile/01a1b5a9-6648-7068-8ffc-cc678021651d
 
+# Hidden entries are not shown as links but stay in the Person schema sameAs list.
+- name: Wikidata
+  url: https://www.wikidata.org/wiki/Q142076486
+  hidden: true
+
 - name: Patchstack
   url: https://patchstack.com/database/researchers/2c5f99b5-ccfe-41e7-be10-43335f9bf195

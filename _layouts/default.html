@@ -56,7 +56,8 @@
     <div class="wrap">
       <p>&copy; {{ site.time | date: "%Y" }} {{ site.name }}</p>
       <p class="footer-links">
-        {%- for p in site.data.profiles %}
+        {%- assign visible_profiles = site.data.profiles | where_exp: "p", "p.hidden != true" %}
+        {%- for p in visible_profiles %}
         <a href="{{ p.url }}" rel="me">{{ p.name }}</a>{% unless forloop.last %} &middot;{% endunless %}
         {%- endfor %}
       </p>

@@ -1,5 +1,6 @@
 <ul class="profiles">
   {%- for p in site.data.profiles %}
+  {%- if p.hidden %}{% continue %}{% endif %}
   <li>
     <a href="{{ p.url }}" rel="me">
       <span>{{ p.name }}</span>
