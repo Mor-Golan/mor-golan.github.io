@@ -11,7 +11,11 @@
   {%- assign description = page.description | default: site.bio | strip_html | normalize_whitespace %}
   <title>{{ full_title | escape }}</title>
   <meta name="description" content="{{ description | escape }}">
+  {%- if page.url == "/404.html" %}
+  <meta name="robots" content="noindex">
+  {%- else %}
   <link rel="canonical" href="{{ page.url | absolute_url }}">
+  {%- endif %}
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:title" content="{{ full_title | escape }}">
   <meta property="og:description" content="{{ description | escape }}">
