@@ -43,7 +43,7 @@ body {
 a { color: var(--accent); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
-.wrap { padding: 0 clamp(16px, 4vw, 56px); }
+.wrap { padding-left: clamp(16px, 4vw, 56px); padding-right: clamp(16px, 4vw, 56px); }
 
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 8px; padding: 6px 10px; background: var(--surface); }
