@@ -4,6 +4,14 @@ title: About
 description: About Mor Golan, cybersecurity team lead at QMasters, OSCP, penetration tester, vulnerability researcher and bug bounty hunter.
 ---
 {% include intro.html heading="About Mor Golan" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "{{ page.url | absolute_url }}",
+  "mainEntity": { "@type": "Person", "@id": "{{ site.url }}/#person", "name": {{ site.name | jsonify }} }
+}
+</script>
 
 <h2>Experience</h2>
 <ul class="timeline">
